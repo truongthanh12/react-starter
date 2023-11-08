@@ -1,9 +1,10 @@
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "../../@/components/ui/button";
 import {
   Form,
@@ -18,9 +19,6 @@ import { toast } from "../../components/ui/use-toast";
 import { setAuth } from "../../state/features/authSlice";
 import { useAppDispatch } from "../../state/hooks";
 import { ToastAction } from "../../components/ui/toast";
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
-import { useTranslation } from "react-i18next";
 
 const FormSchema = z.object({
   username: z.string().min(3, {
@@ -32,8 +30,8 @@ const FormSchema = z.object({
 });
 
 export function AuthForm() {
-  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
   const form = useForm<z.infer<typeof FormSchema>>({

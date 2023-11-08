@@ -1,5 +1,5 @@
 import DefaultLayout from "../layout/DefaultLayout";
-import { Home } from "../pages/home";
+import Home from "../pages/home";
 import GuardRoute from "./GuardRoute";
 
 export const userRoute = {

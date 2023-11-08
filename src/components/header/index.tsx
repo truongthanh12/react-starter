@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "../../@/components/ui/button";
 import { ShowToastButton } from "../ui/ToastContainer";
 import styles from "./Header.module.scss";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { logout } from "../../state/features/authSlice";
 import { LangSwitch } from "../lang";
-import { useTranslation } from "react-i18next";
+import { memo } from "react";
 
 const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -42,4 +43,4 @@ const Header = () => {
   );
 };
 
-export { Header };
+export default memo(Header);
