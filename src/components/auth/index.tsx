@@ -73,7 +73,7 @@ export function AuthForm() {
             <FormItem>
               <FormLabel>{t("auth:username")}: admin</FormLabel>
               <FormControl>
-                <Input placeholder="username..." {...field} />
+                <Input autoFocus placeholder="username..." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
