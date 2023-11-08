@@ -1,3 +1,6 @@
 .header {
-    @apply flex items-center justify-between;
+  @apply flex items-center justify-between py-4;
+  .account {
+    @apply flex items-center uppercase font-bold;
+  }
 }

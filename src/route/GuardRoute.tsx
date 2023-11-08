@@ -1,14 +1,15 @@
 import { ReactNode, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../state/hooks";
 
 export default function PrivateRoute({ children }: { children: ReactNode }) {
-  const user = false;
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (user) {
-      // If user is logged in, redirect away from the login page
+    if (user?.username) {
+      // If user is logged in, redirect away from the main page
       if (pathname === "/auth") {
         navigate("/");
       }
@@ -18,7 +19,7 @@ export default function PrivateRoute({ children }: { children: ReactNode }) {
         navigate("/auth");
       }
     }
-  }, [user, pathname, navigate]);
+  }, [user?.username, pathname, navigate]);
 
   return <>{children}</>;
 }

@@ -2,7 +2,8 @@ import axios from "axios";
 import queryString from "query-string";
 
 const ApiService = axios.create({
-  baseURL: process.env.API_URL || "http://localhost:3000",
+  baseURL: "https://dummyjson.com",
+  // baseURL: process.env.VITE_API_BASE_URL || "https://dummyjson.com",
   headers: {
     "content-type": "application/json",
   },

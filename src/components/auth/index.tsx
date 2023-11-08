@@ -15,8 +15,12 @@ import {
 } from "../../@/components/ui/form";
 import { Input } from "../../@/components/ui/input";
 import { toast } from "../../components/ui/use-toast";
-import { loginAsync } from "../../state/features/authSlice";
+import { setAuth } from "../../state/features/authSlice";
 import { useAppDispatch } from "../../state/hooks";
+import { ToastAction } from "../../components/ui/toast";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const FormSchema = z.object({
   username: z.string().min(3, {
@@ -28,7 +32,10 @@ const FormSchema = z.object({
 });
 
 export function AuthForm() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -39,21 +46,34 @@ export function AuthForm() {
 
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     const { username, password } = data || {};
-    dispatch(loginAsync(data))
-    toast({
-      title: `You logged as ${username}`,
-    });
+    setLoading(true);
+    setTimeout(() => {
+      if (username === "admin" && password === "admin") {
+        dispatch(setAuth({ username }));
+        toast({
+          title: `You logged as ${username}`,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Username or Password is not matching.",
+          action: <ToastAction altText="Try again">Try again</ToastAction>,
+        });
+      }
+      setLoading(false);
+    }, 750);
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+        <h1 className="text-2xl font-bold text-white">{t("auth:title")}</h1>
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>{t("auth:username")}: admin</FormLabel>
               <FormControl>
                 <Input placeholder="username..." {...field} />
               </FormControl>
@@ -66,7 +86,7 @@ export function AuthForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t("auth:password")}: admin</FormLabel>
               <FormControl>
                 <Input placeholder="password..." {...field} />
               </FormControl>
@@ -74,8 +94,9 @@ export function AuthForm() {
             </FormItem>
           )}
         />
-        <Button variant="outline" type="submit">
-          Submit
+        <Button disabled={loading} variant="outline" type="submit">
+          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {t("auth:submit")}
         </Button>
       </form>
     </Form>

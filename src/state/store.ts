@@ -3,7 +3,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
-import message from "./features/authSlice";
+import auth from "./features/authSlice";
 
 const persistConfig = {
   key: "root",
@@ -12,7 +12,7 @@ const persistConfig = {
 };
 
 const rootReducer: Reducer = combineReducers({
-  message,
+  auth,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
