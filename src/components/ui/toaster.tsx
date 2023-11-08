@@ -15,7 +15,7 @@ const Toaster = () => {
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
-          <Toast className="z-100 bg-slate-800 rounded-md" duration={3000} key={id} {...props}>
+          <Toast className="z-100 rounded-md" duration={3000} key={id} {...props}>
             <div className="grid gap-1">
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
