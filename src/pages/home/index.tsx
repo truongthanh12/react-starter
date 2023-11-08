@@ -1,6 +1,6 @@
 import { memo, useEffect, useState } from "react";
 import { useAppSelector } from "../../state/hooks";
-import useProductsFetch from "../../api/useProductsFetch";
+import fetchProducts from "../../api/fetchProducts";
 
 const Home = () => {
   const [products, setProducts] = useState<any>();
@@ -9,12 +9,8 @@ const Home = () => {
   useEffect(() => {
     if (user?.username) {
       const fetchData = async () => {
-        try {
-          const { data } = await useProductsFetch();
-          setProducts(data);
-        } catch (error) {
-          throw error
-        }
+        const { data } = await fetchProducts();
+        setProducts(data);
       };
 
       fetchData();
