@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Button } from "../../@/components/ui/button";
-import { ShowToastButton } from "../ui/ToastContainer";
 import styles from "./Header.module.scss";
-import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { logout } from "../../state/features/authSlice";
-import { LangSwitch } from "../lang";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
+import { logout } from "@/state/features/authSlice";
 import { memo } from "react";
+import { Button } from "@/components/ui/button";
+import Image from "../ui/image";
+import Logo from "@app/assets/images/logo.svg" 
 
 const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -18,15 +18,16 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <>
-        <LangSwitch />
-        <ShowToastButton />
-      </>
+      <div className={styles.logo}>
+        <Link to="/">
+          <Image src={Logo} alt="logo VieON" />
+        </Link>
+      </div>
       {user?.username ? (
         <div className={styles.account}>
           {user?.username}
           <Button
-            variant="ghost"
+            variant="outline"
             onClick={handleLogout}
             title="logout"
             className="underline ml-2"

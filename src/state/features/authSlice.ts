@@ -1,6 +1,6 @@
 // authSlice.ts
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "../../models/User";
+import { User } from "@/models/User";
 
 // Define a thunk manually without using createAsyncThunk
 export const loginAsync = () => {};

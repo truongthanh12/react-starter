@@ -3,4 +3,7 @@
   .account {
     @apply flex items-center uppercase font-bold;
   }
+  .logo {
+    @apply flex md:max-w-[152px] max-w-[120px];
+  }
 }

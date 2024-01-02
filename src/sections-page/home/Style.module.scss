@@ -1,0 +1,18 @@
+.promotion-info {
+  .scrollbar-custom {
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #d9d9d9;
+      border-radius: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      background: #8a8a8a;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      opacity: 0.75;
+    }
+  }
+}

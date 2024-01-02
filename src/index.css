@@ -1,15 +1,15 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: clamp(12px, calc(1vw + 1vh), 40px);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,4 +26,36 @@ a {
 
 body {
   margin: 0;
+}
+
+/* Custom Scrollbar Styles */
+.scrollbar-custom ::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-custom ::-webkit-scrollbar-track {
+  background: #d9d9d9;
+}
+
+.scrollbar-custom ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.scrollbar-custom ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* End Custom Scrollbar Styles */
+
+.background-body {
+  background-image: url(../../../app/assets/images/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
+@media screen and (min-width: 768px) {
+  .background-body {
+    background-image: url(../../../app/assets/images/background.png);
+  }
 }

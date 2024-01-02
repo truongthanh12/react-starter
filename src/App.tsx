@@ -1,8 +1,7 @@
 import { ReactNode, Suspense } from "react";
-import Toaster from "./components/ui/toaster";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { userRoute } from "./route/DefaultRoute";
-import { authRoute } from "./route/AuthRoute";
+import { userRoute } from "@/route/DefaultRoute";
+import { authRoute } from "@/route/AuthRoute";
 
 /**
  * Renders the main application component.
@@ -24,7 +23,6 @@ function App() {
           {createRoutes(userRoute)}
           {createRoutes(authRoute)}
         </Routes>
-        <Toaster />
       </Suspense>
     </BrowserRouter>
   );
